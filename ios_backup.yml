@@ -14,6 +14,7 @@
 
     - set_fact:
         temp_backup_file: "{{ backup_output.backup_path }}"
+        cacheable: yes
 
     - name: Copy the temp to the destination
       copy:
