@@ -13,9 +13,8 @@
          backup: yes
       register: backup_output
 
-    - set_stats:
-        data:
-          router_backup_value: "{{ backup_output.backup_path }}"
+    - set_facts:
+         router_backup_value: "{{ backup_output.backup_path }}"
       connection: local
 
     - name: Copy the temp to the destination
