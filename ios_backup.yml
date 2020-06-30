@@ -19,7 +19,5 @@
         src: "{{ temp_backup_file }}"
         dest: "{{ network_backup_file }}"
       register: copy_result
-      connection: ssh
-      delegate_to: localhost
-      remote_user: root
+      connection: local
       
