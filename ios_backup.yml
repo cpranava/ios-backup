@@ -5,6 +5,7 @@
     ansible_network_os: ios
   vars:
    network_backup_file:  /tmp/
+  gather_facts: false
   tasks:
     - name: backing up running config
       ios_config:
