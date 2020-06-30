@@ -1,16 +1,11 @@
 ---
 - name: backup ios routers/switch
   hosts: routers
+  #gather_facts: false
   become: true
   vars:
-   project_path: "{{ lookup('env', 'PWD') }}"
    network_backup_file:  /tmp/
   tasks:
-    - command: "ls {{ project_path }}"
-      register: ls_output
-
-    - debug: var=ls_output
-
     - name: backing up running config
       ios_config:
          backup: yes
@@ -25,13 +20,3 @@
         dest: "{{ network_backup_file }}"
       register: copy_result
       connection: ssh
-      become: yes
-
-    - command: "ls {{ project_path }}"
-      register: ls_post_output
-
-    - debug: var=ls_post_output
-    
-    - debug: var=backup_output
-
-    - debug: var=copy_result
