@@ -7,7 +7,7 @@
   #become: yes
   vars:
    network_backup_file:  /tmp/
-  gather_facts: false
+  gather_facts: true
   tasks:
     - name: backing up running config
       ios_config:
@@ -32,5 +32,5 @@
         src: "{{ router_backup_value }}"
         dest: "{{ network_backup_file }}"
       register: copy_result
-      delegate_to: "{{ output_ip.stdout_lines[0] }}"
+      delegate_to: "{{ output_ip.stdout_lines[0],split(" "}[-1] }}"
       
