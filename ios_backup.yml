@@ -20,3 +20,5 @@
         dest: "{{ network_backup_file }}"
       register: copy_result
       connection: ssh
+      remote_user: root
+      
