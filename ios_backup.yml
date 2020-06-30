@@ -1,6 +1,7 @@
 ---
 - name: backup ios routers/switch
   hosts: routers
+  connection: network_cli
   vars:
     ansible_network_os: ios
   vars:
@@ -11,7 +12,6 @@
       ios_config:
          backup: yes
       register: backup_output
-      connection: network_cli
 
     - set_fact:
         router_backup_value: "{{ backup_output.backup_path }}"
