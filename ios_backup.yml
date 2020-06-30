@@ -21,6 +21,6 @@
         src: "{{ backup_output.backup_path }}"
         dest: "{{ network_backup_file }}"
       register: copy_result
-      connection: local
+      delegate_to: 192.168.21.42
       
       
