@@ -1,6 +1,6 @@
 ---
 - name: backup ios routers/switch
-  hosts: all
+  hosts: routers
   become: true
   vars:
    project_path: "{{ lookup('env', 'PWD') }}"
