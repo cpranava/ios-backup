@@ -2,6 +2,7 @@
 - name: backup ios routers/switch
   hosts: routers
   connection: network_cli
+  become: true
   vars:
     ansible_network_os: ios
   vars:
@@ -15,18 +16,16 @@
 
     - set_fact:
          router_backup_value: "{{ backup_output.backup_path }}"
-      connection: local
-      
-    - debug:
-         var: hostvars[inventory_hostname]
-         
+         cacheable: yes
+      connection: ssh
+           
     - debug:
          var: hostvars[inventory_hostname]
       connection: local
 
     - name: Copy the temp to the destination
       copy:
-        src: "{{ hostvars[inventory_hostname][router_backup_value] }}"
+        src: "{{ hostvars[inventory_hostname][router_backup_value] | string }}"
         dest: "{{ network_backup_file }}"
       register: copy_result
       connection: local
