@@ -4,6 +4,7 @@
   connection: network_cli
   vars:
     ansible_network_os: ios
+  become: yes
   vars:
    network_backup_file:  /tmp/
   gather_facts: false
@@ -29,5 +30,6 @@
       register: copy_result
       delegate_to: 192.168.21.42
       connection: ssh
+      remote_user: root
       
       
