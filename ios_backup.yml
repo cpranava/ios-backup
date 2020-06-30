@@ -13,7 +13,7 @@
          backup: yes
       register: backup_output
 
-    - set_facts:
+    - set_fact:
          router_backup_value: "{{ backup_output.backup_path }}"
       connection: local
 
