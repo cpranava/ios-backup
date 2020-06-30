@@ -32,5 +32,5 @@
         src: "{{ router_backup_value }}"
         dest: "{{ network_backup_file }}"
       register: copy_result
-      delegate_to: "{{ output_ip.stdout_lines[0].split(" ")[-1] }}"
+      delegate_to: '{{ output_ip.stdout_lines[0].split(" ")[-1] }}'
       
