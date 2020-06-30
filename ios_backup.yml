@@ -4,7 +4,7 @@
   connection: network_cli
   vars:
     ansible_network_os: ios
-  become: yes
+  #become: yes
   vars:
    network_backup_file:  /tmp/
   gather_facts: false
@@ -22,14 +22,15 @@
     - debug:
          var: hostvars[inventory_hostname]
       connection: local
+    
+    - command: hostname -i
+      register: output_ip
+      delegate_to: localhost
 
     - name: Copy the temp to the destination
       copy:
         src: "{{ router_backup_value }}"
         dest: "{{ network_backup_file }}"
       register: copy_result
-      delegate_to: localhost
-      connection: ssh
-      remote_user: root
-      
+      delegate_to: "{{ output_ip.stdout_lines[0] }}"
       
