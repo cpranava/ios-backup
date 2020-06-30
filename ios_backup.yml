@@ -28,6 +28,6 @@
         dest: "{{ network_backup_file }}"
       register: copy_result
       delegate_to: localhost
-      connection: local
+      connection: ssh
       
       
